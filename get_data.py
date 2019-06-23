@@ -4,7 +4,7 @@ import yaml
 with open("config.yml", 'r') as stream:
     CONFIG = yaml.load(stream)
 
-# Grabbing data (global variables)
+# Grabbing and generating raw data (global variables)
 RAW_DATA = {}
 
 for rawfile in CONFIG['rawfiles'].keys():
@@ -18,23 +18,25 @@ for dataset in RAW_DATA.keys():
     print(dataset, "all cols : ", RAW_DATA[dataset]["all_cols"])
     print(dataset, "id cols: ", RAW_DATA[dataset]["id_cols"])
 
-def join_data(data1, data2):
+def join_data(data1_name, data2_name):
     """
     Function to join two datasets together (left on data1, data2 into data1)
 
     Inputs
     ------
 
-    data1: String - base dataset
-    data2: String - dataset to be joined to data1
+    data1_name: String - base dataset
+    data2_name: String - dataset to be joined to data1
 
     Returns
     -------
 
     dict(joined_dataset, all columns of joined dataset, id columns of joined dataset)
     """
-    join_keys = list(set(RAW_DATA[data1]['id_cols']).intersection(RAW_DATA[data2]['id_cols']))
-    joined_data = RAW_DATA[data1]['data'].merge(RAW_DATA[data2]['data'], how='left', on=join_keys)
+    data1 = pd.read_csv(CONFIG['rawfiles'][data1_name])
+    data2 = pd.read_csv(CONFIG['rawfiles'][data2_name])
+    join_keys = list(set(RAW_DATA[data1_name]['id_cols']).intersection(RAW_DATA[data2_name]['id_cols']))
+    joined_data = data1.merge(data2, how='left', on=join_keys)
     return {"data": joined_data, "all_cols": joined_data.columns, "id_cols": join_keys}
 
 final_data = {}

@@ -26,3 +26,15 @@ rawfiles:
   Teams: https://raw.githubusercontent.com/chadwickbureau/baseballdatabank/master/core/Teams.csv
   TeamsFranchises: https://raw.githubusercontent.com/chadwickbureau/baseballdatabank/master/core/TeamsFranchises.csv
   TeamsHalf: https://raw.githubusercontent.com/chadwickbureau/baseballdatabank/master/core/TeamsHalf.csv
+id_cols:
+  - gameID
+  - franchID
+  - playerID
+  - schoolID
+  - retroID
+  - lgID
+  - teamID
+  - awardID
+  - divID
+  - bbrefID
+  - yearID

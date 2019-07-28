@@ -14,9 +14,9 @@ for rawfile in CONFIG['rawfiles'].keys():
                                         for col in RAW_DATA[rawfile]["data"].columns
                                             if col.lower() in [x.lower() for x in CONFIG['id_cols']]
                                     ]
-for dataset in RAW_DATA.keys():
-    print(dataset, "all cols : ", RAW_DATA[dataset]["all_cols"])
-    print(dataset, "id cols: ", RAW_DATA[dataset]["id_cols"])
+# for dataset in RAW_DATA.keys():
+#     print(dataset, "all cols : ", RAW_DATA[dataset]["all_cols"])
+#     print(dataset, "id cols: ", RAW_DATA[dataset]["id_cols"])
 
 def join_data(data1_name, data2_name):
     """

@@ -41,4 +41,4 @@ def join_data(data1_name, data2_name):
 
 final_data = {}
 final_data['People_Batting'] = join_data('People', 'Batting')
-print(final_data['People_Batting'])
+print(final_data['People_Batting']["data"]['yearID'].value_counts(dropna=False))
